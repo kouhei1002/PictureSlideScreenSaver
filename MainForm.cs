@@ -12,24 +12,27 @@ using System.Diagnostics;
 
 namespace ScreenSavaverPictures
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         // Test Program
         List<String> fileNameList;
         Queue<String> fileNameQueue;
+
+        double rat = 1.6;
 
         String dir;
 
         PicturePanel currentPicturePanel;
         PicturePanel nextPicturePanel;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = Color.Black;
             this.dir = @"C:\Users\kouhei\Dropbox\Pictures\Illust";
+            //this.dir = @"C:\Users\kouhei\Dropbox\Pictures\MyIllust\finished";
             this.fileNameList = new List<String>();
 
             this.SetStyle(ControlStyles.DoubleBuffer, true);
@@ -77,7 +80,7 @@ namespace ScreenSavaverPictures
                 this.HiddePictureTimer.Stop();
 
                 this.Controls.Remove(this.currentPicturePanel);
-                this.currentPicturePanel.Dispose();
+                //this.currentPicturePanel.Dispose();
                 this.currentPicturePanel = this.nextPicturePanel;
                 this.Controls.Add(this.currentPicturePanel);
 
@@ -90,7 +93,7 @@ namespace ScreenSavaverPictures
             int number;
             int max;
             List<Image> img = new List<Image>();
-            
+
             max = 6;
             Random cRandom = new System.Random();
 
@@ -175,7 +178,8 @@ namespace ScreenSavaverPictures
 
         private void initFileNameList()
         {
-            this.fileNameList.AddRange(System.IO.Directory.GetFiles(this.dir, "*", System.IO.SearchOption.AllDirectories));
+            this.fileNameList.AddRange(System.IO.Directory.GetFiles(this.dir, "*.jpg", System.IO.SearchOption.AllDirectories));
+            this.fileNameList.AddRange(System.IO.Directory.GetFiles(this.dir, "*.png", System.IO.SearchOption.AllDirectories));
         }
 
         private void initFileNameQueue()

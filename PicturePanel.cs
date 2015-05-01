@@ -54,6 +54,73 @@ namespace ScreenSavaverPictures
             return posX;
         }
 
+        /// <summary>
+        /// 画像サイズ最適化
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
+        //public abstract Image optimizePictureSize(Image img);
+        public Image optimizePictureSize(Image img, PictureBox pp)
+        {
+            double bai;
+
+            if (img.Width < img.Height)
+            {
+                // 縦長の画像の場合
+                if ((double)pp.Height / (double)pp.Width < (double)img.Height / (double)img.Width)
+                {
+                    // pictureBoxよりも縦の比率が長い場合
+                    bai = (double)pp.Width / (double)img.Width;
+                    Debug.WriteLine("picturebox width: " + pp.Width);
+                    Debug.WriteLine("picturebox height: " + pp.Height);
+                    Debug.WriteLine("image width: " + img.Width);
+                    Debug.WriteLine("image height: " + img.Height);
+                    Debug.WriteLine(bai);
+                }
+                else
+                {
+                    bai = (double)pp.Height / (double)img.Height;
+                    Debug.WriteLine("picturebox width: " + pp.Width);
+                    Debug.WriteLine("picturebox height: " + pp.Height);
+                    Debug.WriteLine("image width: " + img.Width);
+                    Debug.WriteLine("image height: " + img.Height);
+                    Debug.WriteLine(bai);
+                }
+            }
+            else
+            {
+                // 横長の画像の場合(正方形も含む)
+                if ((double)pp.Width / (double)pp.Height < (double)img.Width / (double)img.Height)
+                {
+                    // pictureBoxよりも横の比率が長い場合
+                    bai = (double)pp.Height / (double)img.Height;
+                    Debug.WriteLine("picturebox width: " + pp.Width);
+                    Debug.WriteLine("picturebox height: " + pp.Height);
+                    Debug.WriteLine("image width: " + img.Width);
+                    Debug.WriteLine("image height: " + img.Height);
+                    Debug.WriteLine(bai);
+                }
+                else
+                {
+                    bai = (double)pp.Width / (double)img.Width;
+                    Debug.WriteLine("picturebox width: " + pp.Width);
+                    Debug.WriteLine("picturebox height: " + pp.Height);
+                    Debug.WriteLine("image width: " + img.Width);
+                    Debug.WriteLine("image height: " + img.Height);
+                    Debug.WriteLine(bai);
+                }
+            }
+
+            Bitmap canvas = new Bitmap((int)((double)img.Width * bai), (int)((double)img.Height * bai));
+            Graphics g = Graphics.FromImage(canvas);
+
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+            g.DrawImage(img, 0, 0, canvas.Width, canvas.Height);
+
+            return canvas;
+        }
+
         public abstract Boolean showPicture();
         public abstract Boolean hiddePicture();
     }
@@ -75,16 +142,16 @@ namespace ScreenSavaverPictures
         {
             this.pictureBox = new PictureBox();
             this.pictureBox.Size = new System.Drawing.Size(this.Width, this.Height);
+            //this.pictureBox.Image = this.optimizePictureSize(img[0], this.pictureBox);
             this.pictureBox.Image = img[0];
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            //this.pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
 
             this.posX = -this.pictureBox.Width;
             this.posY = 0;
             this.pictureBox.Location = new System.Drawing.Point(this.posX, this.posY);
-
-            this.pictureBox.Image = img[0];
 
             this.Controls.Add(this.pictureBox);
         }
@@ -110,7 +177,7 @@ namespace ScreenSavaverPictures
         {
             int preX = this.pictureBox.Left;
 
-            this.posX = this.getNextPos(this.posX, -this.pictureBox.Width);
+            this.posX = this.getNextPos(this.posX, -this.pictureBox.Width - this.adjust);
             this.pictureBox.Location = new Point(this.posX, 0);
 
             if (preX == this.pictureBox.Left)
@@ -153,8 +220,8 @@ namespace ScreenSavaverPictures
             this.pictureBox2.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox2.TabStop = false;
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
         
             this.posX1 = -this.pictureBox1.Width;
             this.posY1 = 0;
@@ -163,8 +230,8 @@ namespace ScreenSavaverPictures
             this.pictureBox1.Location = new System.Drawing.Point(this.posX1, this.posY1);
             this.pictureBox2.Location = new System.Drawing.Point(this.posX2 + 3, this.posY2);
             
-            this.pictureBox1.Image = img[0];
-            this.pictureBox2.Image = img[1];
+            this.pictureBox1.Image = this.optimizePictureSize(img[0], this.pictureBox1);
+            this.pictureBox2.Image = this.optimizePictureSize(img[1], this.pictureBox2);
 
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
@@ -209,7 +276,6 @@ namespace ScreenSavaverPictures
                 return false;
             }
         }
-
     }
 
     /// <summary>
@@ -246,9 +312,9 @@ namespace ScreenSavaverPictures
             this.pictureBox1.TabStop = false;
             this.pictureBox2.TabStop = false;
             this.pictureBox3.TabStop = false;
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
             this.posX1 = -this.pictureBox1.Width;
             this.posY1 = 0;
@@ -260,9 +326,9 @@ namespace ScreenSavaverPictures
             this.pictureBox2.Location = new System.Drawing.Point(this.posX2, this.posY2);
             this.pictureBox3.Location = new System.Drawing.Point(this.posX3, this.posY3);
 
-            this.pictureBox1.Image = img[0];
-            this.pictureBox2.Image = img[1];
-            this.pictureBox3.Image = img[2];
+            this.pictureBox1.Image = this.optimizePictureSize(img[0], this.pictureBox1);
+            this.pictureBox2.Image = this.optimizePictureSize(img[1], this.pictureBox2);
+            this.pictureBox3.Image = this.optimizePictureSize(img[2], this.pictureBox3);
 
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
@@ -359,9 +425,9 @@ namespace ScreenSavaverPictures
             this.pictureBox2.TabStop = false;
             this.pictureBox3.TabStop = false;
 
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
             this.posX1 = -this.pictureBox1.Width;
             this.posY1 = 0;
@@ -374,9 +440,9 @@ namespace ScreenSavaverPictures
             this.pictureBox2.Location = new System.Drawing.Point(this.posX2, this.posY2);
             this.pictureBox3.Location = new System.Drawing.Point(this.posX3, this.posY3);
 
-            this.pictureBox1.Image = img[0];
-            this.pictureBox2.Image = img[1];
-            this.pictureBox3.Image = img[2];
+            this.pictureBox1.Image = this.optimizePictureSize(img[0], this.pictureBox1);
+            this.pictureBox2.Image = this.optimizePictureSize(img[1], this.pictureBox2);
+            this.pictureBox3.Image = this.optimizePictureSize(img[2], this.pictureBox3);
 
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
@@ -479,10 +545,10 @@ namespace ScreenSavaverPictures
             this.pictureBox3.TabStop = false;
             this.pictureBox4.TabStop = false;
 
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
             this.posX1 = -this.pictureBox1.Width;
             this.posY1 = 0;
@@ -498,10 +564,10 @@ namespace ScreenSavaverPictures
             this.pictureBox3.Location = new System.Drawing.Point(this.posX3, this.posY3);
             this.pictureBox4.Location = new System.Drawing.Point(this.posX4, this.posY4);
 
-            this.pictureBox1.Image = img[0];
-            this.pictureBox2.Image = img[1];
-            this.pictureBox3.Image = img[2];
-            this.pictureBox4.Image = img[3];
+            this.pictureBox1.Image = this.optimizePictureSize(img[0], this.pictureBox1);
+            this.pictureBox2.Image = this.optimizePictureSize(img[1], this.pictureBox2);
+            this.pictureBox3.Image = this.optimizePictureSize(img[2], this.pictureBox3);
+            this.pictureBox4.Image = this.optimizePictureSize(img[3], this.pictureBox4);
 
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);

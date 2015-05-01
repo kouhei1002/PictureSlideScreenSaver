@@ -1,6 +1,6 @@
 ﻿namespace ScreenSavaverPictures
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -49,7 +49,7 @@
             this.HiddePictureTimer.Interval = 16;
             this.HiddePictureTimer.Tick += new System.EventHandler(this.HiddePictureTimer_Tick);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
