@@ -32,9 +32,9 @@ namespace ScreenSavaverPictures
             this.dir = @"C:\Users\kouhei\Dropbox\Pictures\Illust";
             this.fileNameList = new List<String>();
 
-            this.SetStyle(ControlStyles.DoubleBuffer, true);
-            this.SetStyle(ControlStyles.UserPaint, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            //this.SetStyle(ControlStyles.DoubleBuffer, true);
+            //this.SetStyle(ControlStyles.UserPaint, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         private void Form1_Load(object sender, EventArgs e)

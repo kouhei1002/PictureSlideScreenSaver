@@ -1,9 +1,0 @@
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\bin\Debug\ScreenSavaverPictures.exe.config
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\bin\Debug\ScreenSavaverPictures.exe
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\bin\Debug\ScreenSavaverPictures.pdb
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\PictureSlideScreenSaver.csprojResolveAssemblyReference.cache
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.Form1.resources
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.Properties.Resources.resources
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\PictureSlideScreenSaver.csproj.GenerateResource.Cache
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.exe
-C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.pdb
