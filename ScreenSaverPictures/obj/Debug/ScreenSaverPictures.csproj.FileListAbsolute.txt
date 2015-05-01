@@ -1,0 +1,12 @@
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSaverPictures.csprojResolveAssemblyReference.cache
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSavaverPictures.Form1.resources
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSavaverPictures.Properties.Resources.resources
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSaverPictures.csproj.GenerateResource.Cache
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSavaverPictures.exe
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\obj\Debug\ScreenSavaverPictures.pdb
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\bin\Debug\ScreenSavaverPictures.exe.config
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\bin\Debug\ScreenSavaverPictures.exe
+C:\Users\kouhei\Documents\Visual Studio 2013\Projects\ScreenSavaverPictures\ScreenSavaverPictures\bin\Debug\ScreenSavaverPictures.pdb
+C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\bin\Debug\ScreenSavaverPictures.exe.config
+C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.exe
+C:\Users\kouhei\Documents\GitHub\PictureSlideScreenSaver\ScreenSaverPictures\obj\Debug\ScreenSavaverPictures.pdb
