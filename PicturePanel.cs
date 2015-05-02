@@ -36,7 +36,7 @@ namespace ScreenSavaverPictures
             this.adjust = 50;
         }
 
-        public int getNextPos(int posX, int desX) 
+        public int getNextPos(int posX, int desX)
         {
             double sub;
             double dx;
@@ -71,20 +71,10 @@ namespace ScreenSavaverPictures
                 {
                     // pictureBoxよりも縦の比率が長い場合
                     bai = (double)pp.Width / (double)img.Width;
-                    Debug.WriteLine("picturebox width: " + pp.Width);
-                    Debug.WriteLine("picturebox height: " + pp.Height);
-                    Debug.WriteLine("image width: " + img.Width);
-                    Debug.WriteLine("image height: " + img.Height);
-                    Debug.WriteLine(bai);
                 }
                 else
                 {
                     bai = (double)pp.Height / (double)img.Height;
-                    Debug.WriteLine("picturebox width: " + pp.Width);
-                    Debug.WriteLine("picturebox height: " + pp.Height);
-                    Debug.WriteLine("image width: " + img.Width);
-                    Debug.WriteLine("image height: " + img.Height);
-                    Debug.WriteLine(bai);
                 }
             }
             else
@@ -94,20 +84,10 @@ namespace ScreenSavaverPictures
                 {
                     // pictureBoxよりも横の比率が長い場合
                     bai = (double)pp.Height / (double)img.Height;
-                    Debug.WriteLine("picturebox width: " + pp.Width);
-                    Debug.WriteLine("picturebox height: " + pp.Height);
-                    Debug.WriteLine("image width: " + img.Width);
-                    Debug.WriteLine("image height: " + img.Height);
-                    Debug.WriteLine(bai);
                 }
                 else
                 {
                     bai = (double)pp.Width / (double)img.Width;
-                    Debug.WriteLine("picturebox width: " + pp.Width);
-                    Debug.WriteLine("picturebox height: " + pp.Height);
-                    Debug.WriteLine("image width: " + img.Width);
-                    Debug.WriteLine("image height: " + img.Height);
-                    Debug.WriteLine(bai);
                 }
             }
 
@@ -138,7 +118,8 @@ namespace ScreenSavaverPictures
         public PictureBox pictureBox;
         public int posX, posY;
 
-        public PicturePanelA1(int width, int height, Image[] img) : base(width, height)
+        public PicturePanelA1(int width, int height, Image[] img)
+            : base(width, height)
         {
             this.pictureBox = new PictureBox();
             this.pictureBox.Size = new System.Drawing.Size(this.Width, this.Height);
@@ -165,7 +146,7 @@ namespace ScreenSavaverPictures
 
             if (preX == this.pictureBox.Left)
             {
-                return true ;
+                return true;
             }
             else
             {
@@ -222,14 +203,14 @@ namespace ScreenSavaverPictures
             this.pictureBox2.TabStop = false;
             this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             this.pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-        
+
             this.posX1 = -this.pictureBox1.Width;
             this.posY1 = 0;
             this.posX2 = this.Width / 2;
             this.posY2 = -this.pictureBox2.Height;
             this.pictureBox1.Location = new System.Drawing.Point(this.posX1, this.posY1);
             this.pictureBox2.Location = new System.Drawing.Point(this.posX2 + 3, this.posY2);
-            
+
             this.pictureBox1.Image = this.optimizePictureSize(img[0], this.pictureBox1);
             this.pictureBox2.Image = this.optimizePictureSize(img[1], this.pictureBox2);
 
@@ -249,7 +230,7 @@ namespace ScreenSavaverPictures
 
             if (preX == this.pictureBox1.Left && preY == this.pictureBox2.Top)
             {
-                return true ;
+                return true;
             }
             else
             {
@@ -349,7 +330,7 @@ namespace ScreenSavaverPictures
             this.pictureBox2.Location = new Point(this.posX2, this.posY2);
             this.pictureBox3.Location = new Point(this.posX3, this.posY3);
 
-            if (preX1 == this.pictureBox1.Left 
+            if (preX1 == this.pictureBox1.Left
                 && preY2 == this.pictureBox2.Top
                 && preY3 == this.pictureBox3.Top)
             {

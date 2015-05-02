@@ -17,7 +17,7 @@ namespace ScreenSavaverPictures
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 画像ファイル名を取得
+            // メインフォームを起動
             Application.Run(new MainForm());
         }
     }

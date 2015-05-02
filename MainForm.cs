@@ -90,94 +90,19 @@ namespace ScreenSavaverPictures
 
         private PicturePanel newPicturePanel()
         {
-            int number;
-            int max;
-            List<Image> img = new List<Image>();
-
-            max = 6;
-            Random cRandom = new System.Random();
-
-            number = cRandom.Next(max);
-
-            switch (number)
+            PicturePanelGenerator ppg = new FullHDPicturePanelGenerator(this.Size);
+            if (this.fileNameQueue.Count < ppg.MAX_COUNT)
             {
-                case 0:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        return new PicturePanelA1(this.Width, this.Height, img.ToArray());
-                    }
-                case 1:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        String name2 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        img.Add(Image.FromFile(name2));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        Debug.WriteLine("  Picture2 -> " + name2);
-                        return new PicturePanelB1(this.Width, this.Height, img.ToArray());
-                    }
-                case 2:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        String name2 = this.fileNameQueue.Dequeue();
-                        String name3 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        img.Add(Image.FromFile(name2));
-                        img.Add(Image.FromFile(name3));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        Debug.WriteLine("  Picture2 -> " + name2);
-                        Debug.WriteLine("  Picture3 -> " + name3);
-                        return new PicturePanelC1(this.Width, this.Height, img.ToArray());
-                    }
-                case 4:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        String name2 = this.fileNameQueue.Dequeue();
-                        String name3 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        img.Add(Image.FromFile(name2));
-                        img.Add(Image.FromFile(name3));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        Debug.WriteLine("  Picture2 -> " + name2);
-                        Debug.WriteLine("  Picture3 -> " + name3);
-                        return new PicturePanelD1(this.Width, this.Height, img.ToArray());
-                    }
-                case 5:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        String name2 = this.fileNameQueue.Dequeue();
-                        String name3 = this.fileNameQueue.Dequeue();
-                        String name4 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        img.Add(Image.FromFile(name2));
-                        img.Add(Image.FromFile(name3));
-                        img.Add(Image.FromFile(name4));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        Debug.WriteLine("  Picture2 -> " + name2);
-                        Debug.WriteLine("  Picture3 -> " + name3);
-                        Debug.WriteLine("  Picture4 -> " + name4);
-                        return new PicturePanelE1(this.Width, this.Height, img.ToArray());
-                    }
-                default:
-                    {
-                        String name1 = this.fileNameQueue.Dequeue();
-                        img.Add(Image.FromFile(name1));
-                        Debug.WriteLine("Case: " + number);
-                        Debug.WriteLine("  Picture1 -> " + name1);
-                        return new PicturePanelA1(this.Width, this.Height, img.ToArray());
-                    }
+                this.initFileNameQueue();
+                if (this.fileNameQueue.Count < ppg.MAX_COUNT)
+                    ppg.MAX_COUNT = this.fileNameQueue.Count;
             }
+            return ppg.generate(this.fileNameQueue);
         }
 
         private void initFileNameList()
         {
+            // ファイル名の読み込みフェーズ
             this.fileNameList.AddRange(System.IO.Directory.GetFiles(this.dir, "*.jpg", System.IO.SearchOption.AllDirectories));
             this.fileNameList.AddRange(System.IO.Directory.GetFiles(this.dir, "*.png", System.IO.SearchOption.AllDirectories));
         }
