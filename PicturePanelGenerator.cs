@@ -14,7 +14,7 @@ namespace ScreenSavaverPictures
         public int Width;
         public int Height;
         public Size Size;
-        public int MAX_NUMBER = 6;
+        public int MAX_NUMBER = 5;
         public int MAX_COUNT = 30;
         public double THRESHOLD = 1.2;
 
@@ -281,7 +281,7 @@ namespace ScreenSavaverPictures
                             }
                         } while (count < this.MAX_COUNT && count < fq.Count);
 
-                        if (imgs.Count >= 2)
+                        if (imgs.Count >= 4)
                         {
                             // 目的サイズの画像が必要分読み込めた場合
                             pp = new PicturePanelE1(this.Width, this.Height, imgs.ToArray());

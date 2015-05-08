@@ -17,23 +17,28 @@ namespace ScreenSavaverPictures
         public double friction;
         public int margin;
         public int adjust;
+        public Panel dammy;
 
         public PicturePanel()
         {
+            InitializeComponent();
             this.maxSpeed = 100;
             this.friction = 0.85;
             this.margin = 3;
             this.adjust = 50;
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
         public PicturePanel(int width, int height)
         {
+            InitializeComponent();
             this.Width = width;
             this.Height = height;
             this.maxSpeed = 100;
             this.friction = 0.85;
             this.margin = 3;
             this.adjust = 50;
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
         public int getNextPos(int posX, int desX)
@@ -103,6 +108,42 @@ namespace ScreenSavaverPictures
 
         public abstract Boolean showPicture();
         public abstract Boolean hiddePicture();
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // PicturePanel
+            // 
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicturePanel_MouseMove);
+            this.ResumeLayout(false);
+
+        }
+
+        Point OriginalLocation = new Point(int.MaxValue, int.MaxValue);
+        public void PicturePanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            //System.Environment.Exit(0);
+            if (OriginalLocation.X == int.MaxValue && OriginalLocation.Y == int.MaxValue)
+            {
+                OriginalLocation = e.Location;
+            }
+            // マウスが20 pixels 以上動いたかどうかを監視
+            // 動いた場合はアプリケーションを終了
+            if (Math.Abs(e.X - OriginalLocation.X) > 20 || Math.Abs(e.Y - OriginalLocation.Y) > 20)
+            {
+                System.Environment.Exit(0);
+            }
+        }
+
+        public void setDammyPanel()
+        {
+            //this.dammy = new DammyPanel();
+            //this.dammy.Size = this.Size;
+            //this.Controls.Add(dammy);
+            //this.dammy.BringToFront();
+            //this.dammy.BackColor = Color.Transparent;
+        }
     }
 
     /// <summary>
@@ -121,7 +162,7 @@ namespace ScreenSavaverPictures
         public PicturePanelA1(int width, int height, Image[] img)
             : base(width, height)
         {
-            this.pictureBox = new PictureBox();
+            this.pictureBox = new MyPictureBox();
             this.pictureBox.Size = new System.Drawing.Size(this.Width, this.Height);
             //this.pictureBox.Image = this.optimizePictureSize(img[0], this.pictureBox);
             this.pictureBox.Image = img[0];
@@ -135,6 +176,8 @@ namespace ScreenSavaverPictures
             this.pictureBox.Location = new System.Drawing.Point(this.posX, this.posY);
 
             this.Controls.Add(this.pictureBox);
+
+            this.setDammyPanel();
         }
 
         public override Boolean showPicture()
@@ -192,8 +235,8 @@ namespace ScreenSavaverPictures
         public PicturePanelB1(int width, int height, Image[] img)
             : base(width, height)
         {
-            this.pictureBox1 = new PictureBox();
-            this.pictureBox2 = new PictureBox();
+            this.pictureBox1 = new MyPictureBox();
+            this.pictureBox2 = new MyPictureBox();
 
             this.pictureBox1.Size = new System.Drawing.Size(this.Width / 2 - 6, this.Height);
             this.pictureBox2.Size = new System.Drawing.Size(this.Width / 2 - 6, this.Height);
@@ -216,6 +259,8 @@ namespace ScreenSavaverPictures
 
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
+
+            this.setDammyPanel();
         }
 
         public override Boolean showPicture()
@@ -280,9 +325,9 @@ namespace ScreenSavaverPictures
         public PicturePanelC1(int width, int height, Image[] img)
             : base(width, height)
         {
-            this.pictureBox1 = new PictureBox();
-            this.pictureBox2 = new PictureBox();
-            this.pictureBox3 = new PictureBox();
+            this.pictureBox1 = new MyPictureBox();
+            this.pictureBox2 = new MyPictureBox();
+            this.pictureBox3 = new MyPictureBox();
 
             this.pictureBox1.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height / 2 - this.margin);
             this.pictureBox2.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height / 2 - this.margin);
@@ -314,6 +359,8 @@ namespace ScreenSavaverPictures
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox3);
+
+            this.setDammyPanel();
         }
 
         public override Boolean showPicture()
@@ -390,9 +437,9 @@ namespace ScreenSavaverPictures
         public PicturePanelD1(int width, int height, Image[] img)
             : base(width, height)
         {
-            this.pictureBox1 = new PictureBox();
-            this.pictureBox2 = new PictureBox();
-            this.pictureBox3 = new PictureBox();
+            this.pictureBox1 = new MyPictureBox();
+            this.pictureBox2 = new MyPictureBox();
+            this.pictureBox3 = new MyPictureBox();
 
             this.pictureBox1.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height);
             this.pictureBox2.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height / 2 - this.margin);
@@ -428,6 +475,8 @@ namespace ScreenSavaverPictures
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox3);
+
+            this.setDammyPanel();
         }
 
         public override Boolean showPicture()
@@ -506,10 +555,10 @@ namespace ScreenSavaverPictures
         public PicturePanelE1(int width, int height, Image[] img)
             : base(width, height)
         {
-            this.pictureBox1 = new PictureBox();
-            this.pictureBox2 = new PictureBox();
-            this.pictureBox3 = new PictureBox();
-            this.pictureBox4 = new PictureBox();
+            this.pictureBox1 = new MyPictureBox();
+            this.pictureBox2 = new MyPictureBox();
+            this.pictureBox3 = new MyPictureBox();
+            this.pictureBox4 = new MyPictureBox();
 
             this.pictureBox1.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height / 2 - this.margin);
             this.pictureBox2.Size = new System.Drawing.Size(this.Width / 2 - this.margin, this.Height / 2 - this.margin);
@@ -554,6 +603,8 @@ namespace ScreenSavaverPictures
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox4);
+
+            this.setDammyPanel();
         }
 
         public override Boolean showPicture()
